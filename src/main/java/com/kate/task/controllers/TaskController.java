@@ -11,27 +11,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
-@Controller
 @RestController
 @Data
 @AllArgsConstructor
 public class TaskController {
     public TaskService taskService;
 
-    @GetMapping("/get_tasks")
     public Iterable<Task> getTasks(Model model) {
         Iterable<Task> tasks = taskService.getTasksList();
         return tasks;
     }
 
-    @GetMapping("/add_task")
-    public String addTask(Model model){
-        model.addAttribute("add_task", taskService.addTask(new Date(), new Date(), "ttttrtr" ));
-        System.out.println("wow!!!!!");
-        return "add_task";
+    public Task addTask(Model model){
+        Task task = taskService.addTask(new Date(), new Date(), "new task");
+        model.addAttribute("add_task", task);
+        return task;
     }
 
-    @GetMapping("/delete_task")
     public boolean deleteTask(Model model){
         System.out.println("wow!!!!!");
         return true;

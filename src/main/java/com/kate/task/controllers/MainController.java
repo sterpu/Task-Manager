@@ -35,4 +35,10 @@ public class MainController {
         return "tasks";
     }
 
+    @GetMapping("add_task")
+    public String addTask(Model model){
+        taskController.addTask(model);
+        return "add_task";
+    }
+
 }
